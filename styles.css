@@ -1,15 +1,17 @@
 :root {
-    --primary-color: #4e342e; /* Dark Brown from logo branding */
-    --secondary-color: #d84315; /* Burnt Orange */
-    --accent-color: #ffb300; /* Gold */
-    --bg-color: #fffcf5; /* Warmer Cream */
-    --card-bg: #ffffff;
-    --text-color: #2d1e1b; /* Very dark brown */
-    --text-light: #6d4c41; /* Light brown */
+    --primary-color: #6D4C41; /* Rich Coffee Brown */
+    --secondary-color: #D84315; /* Burnt Orange (unchanged, great for appetite) */
+    --accent-color: #FFD700; /* Brighter Gold for contrast */
+    --bg-color: #FFF8E1; /* Very Light Cream/Warm Vanilla */
+    --card-bg: #FFFFFF;
+    --text-color: #3E2723; /* Deepest Brown */
+    --text-light: #5D4037; /* Medium Brown */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
-    --shadow: 0 4px 6px rgba(78, 52, 46, 0.15);
-    --transition: all 0.3s ease;
+    --shadow: 0 10px 20px rgba(62, 39, 35, 0.1);
+    --shadow-hover: 0 15px 25px rgba(62, 39, 35, 0.2);
+    --transition: all 0.4s ease;
+    --border-radius: 16px;
 }
 
 * {
@@ -22,7 +24,8 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.7;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0c8b0' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); /* Subtle texture */
 }
 
 .container {
@@ -33,124 +36,203 @@ body {
 
 /* Header */
 .header {
-    background: linear-gradient(rgba(78, 52, 46, 0.85), rgba(78, 52, 46, 0.85)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); /* Overlay matching brand brown */
+    background: linear-gradient(135deg, rgba(62, 39, 35, 0.95), rgba(93, 64, 55, 0.9)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     color: white;
     text-align: center;
-    padding: 60px 20px;
-    margin-bottom: 40px;
+    padding: 80px 20px;
+    margin-bottom: 60px;
     box-shadow: var(--shadow);
+    border-bottom: 6px solid var(--accent-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: var(--bg-color);
+    border-radius: 50% 50% 0 0;
+    transform: scaleX(1.5);
 }
 
 .logo {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 4px solid var(--accent-color);
-    margin-bottom: 20px;
+    border: 6px solid var(--accent-color);
+    margin-bottom: 25px;
     background-color: white;
-    object-fit: cover;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    object-fit: contain; /* Ensures the logo isn't cut off */
+    padding: 5px; /* White space inside the circle */
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
 }
 
 .header h1 {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 4rem;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+    font-weight: 900;
 }
 
 .tagline {
-    font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
 /* Sections */
 .menu-section {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     background: var(--card-bg);
-    padding: 30px;
-    border-radius: 12px;
+    padding: 40px;
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    position: relative;
+    border: 1px solid rgba(230, 230, 230, 0.5);
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 10px;
-    display: inline-block;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
 }
 
 .section-title i {
-    margin-right: 10px;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
 }
 
 /* Grid for Empanadillas */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-/* List for Platos/Bebidas */
-.menu-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.menu-item {
-    border-bottom: 1px dotted #ddd;
-    padding-bottom: 10px;
-    transition: var(--transition);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .menu-grid .menu-item {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 15px;
-    background: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    background: linear-gradient(to bottom right, #ffffff, #fffdf5);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-grid .menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--secondary-color);
+    opacity: 0;
+    transition: var(--transition);
 }
 
 .menu-grid .menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
-    border-color: var(--accent-color);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.menu-grid .menu-item:hover::before {
+    opacity: 1;
 }
 
 .item-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 2px dotted rgba(0,0,0,0.1);
+    padding-bottom: 8px;
 }
 
 .item-name {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--secondary-color);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--primary-color);
 }
 
 .item-price {
-    font-weight: 700;
-    color: var(--primary-color);
-    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    background: #fff3e0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-family: var(--font-body);
 }
 
 .item-desc {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-light);
-    font-style: italic;
+    font-style: normal;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+/* Highlighted Item (Tres Carnes) */
+.highlight {
+    background: linear-gradient(135deg, #fff8e1, #ffffff) !important;
+    border: 2px solid var(--accent-color) !important;
 }
 
 .highlight .item-name {
-    color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.highlight::after {
+    content: '★ Popular';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .sides-subsection {
