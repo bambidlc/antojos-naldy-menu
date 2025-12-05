@@ -136,5 +136,47 @@
             </a>
         </div>
     </footer>
+
+    <!-- Modern Social Popup -->
+    <div id="social-popup" class="popup-overlay">
+        <div class="popup-container">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <div class="popup-image">
+                <img src="images/logo.png" alt="Antojos By Naldy">
+            </div>
+            <div class="popup-content">
+                <h3>¡Únete a la Familia!</h3>
+                <p>Síguenos en Facebook para ofertas exclusivas, nuevos platos y mucho sabor.</p>
+                <a href="https://www.facebook.com/profile.php?id=61578625139795" target="_blank" class="popup-btn" onclick="closePopup()">
+                    <i class="fab fa-facebook-f"></i> Seguir Página
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wait 2 seconds before showing the popup
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Check if user has already closed the popup in this session
+                if (!sessionStorage.getItem('popupClosed')) {
+                    document.getElementById('social-popup').classList.add('show');
+                }
+            }, 2000);
+        });
+
+        function closePopup() {
+            document.getElementById('social-popup').classList.remove('show');
+            // Remember that the user closed it for this session
+            sessionStorage.setItem('popupClosed', 'true');
+        }
+        
+        // Close on background click
+        document.getElementById('social-popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
 </body>
 </html>
